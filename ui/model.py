@@ -59,12 +59,18 @@ class SubmissionDataModel():
         if dcc == "maya":
             current_file = cmds.file(q=True, sceneName=True)
             print(current_file)
+            #C:/Projects/shot01/scene_v002.mb
+
             return current_file
         elif dcc == "blender":
             current_file = bpy.data.filepath
+            #D:/BlenderProjects/scene.blend
+
             return current_file
         elif dcc == "nuke":
             current_file = nuke.root().name()
+            #E:/NukeProjects/composite_v01.nk
+
         elif dcc == "unknown":
             print("Unknown DCC tools..ㅗ")
             return dcc
@@ -87,30 +93,13 @@ class SubmissionDataModel():
         """
         
         pass
-    def get_DCC_png(self):
-        """
-        DCC png 띄우는 함수 현재 ui를 띄운 DCC툴이 뭔지를 파악하는 함수가 다른 클래스에
-        있고 그 함수가 DCC툴 뭔지 알려주면
-        ui폴더 안에 있는 png 사진들중에 일치하는거 대조해서
-        얘가 가져옴 그래서 그거 띄우는거임
-        """
-     
 
-        pass
-    def get_profile_icon(self):
-        """
-        profile icon pixmap 띄우는 함수 이거는 그냥 ui 파일 안에 
-        png파일 넣어두고
-        거기서 땡겨오게
-        """
-
-        pass
     def get_name(self):
         """
         이거는이제 DB에서 정보 가져오는 함수의 정보를가지고
-        ui에 띄우는
+        DB에서 가져와야되는 부분분
         """
-
+        
         pass
     def get_studentID(self):
         """
@@ -123,7 +112,7 @@ class SubmissionDataModel():
         """
         file name 은 DCC툴에서 current file 조회하느 api가 있을거임 그거쓴 함수로
         얘가 정보받아와서 ui에 띄우는거고
-
+        get_current_path랑 합쳐도될거같고,,아님 그 path에서 스플릿해서[-1]  
         """
 
         pass
