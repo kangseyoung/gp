@@ -27,8 +27,12 @@ studentID
 send_to_deadline
 
 """
-
 from datetime import datetime
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from backend.authDB.db import reservation_collection
+
 
 class SubmissionDataModel():
     def check_DCC(self):
@@ -94,20 +98,18 @@ class SubmissionDataModel():
         
         pass
 
-    def get_name(self):
+    def get_studentID(self, student_login_id):
         """
         이거는이제 DB에서 정보 가져오는 함수의 정보를가지고
-        DB에서 가져와야되는 부분분
-        """
-        
-        pass
-    def get_studentID(self):
-        """
-        이거는이제 DB에서 정보 가져오는 함수의 정보를가지고
-        ui에 띄우는
-        """
+        ui에 띄우는r
+        근데 굳이 디비에서 가져올 필요가 있나? 그냥 로그인정보에서 가져와도되잖아.
+        근데 결국에 디비에서 예약시간대는 가져올 필요가 있으니까
 
-        pass
+        """
+        # student = reservation_collection.find_one({"student_id": student_login_id})
+        studentID = "dsa" #옌 로그인 정보에서 받아와도됨, 어짜피 테스트할거잖아.
+        return studentID
+
     def get_file_name(self):
         """
         file name 은 DCC툴에서 current file 조회하느 api가 있을거임 그거쓴 함수로
