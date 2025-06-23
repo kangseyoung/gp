@@ -247,12 +247,12 @@ background-color: rgb(218, 218, 218);</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLabel" name="name">
+       <widget class="QLabel" name="signed_time">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(218, 218, 218);</string>
         </property>
         <property name="text">
-         <string>name</string>
+         <string>signed_time</string>
         </property>
        </widget>
       </item>

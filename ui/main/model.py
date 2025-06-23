@@ -29,9 +29,19 @@ send_to_deadline
 """
 from datetime import datetime
 from backend.authDB.db import reservation_collection
+from PySide6.QtCore import QObject, Slot
 
+class SubmissionDataModel(QObject):
 
-class SubmissionDataModel():
+    @Slot(dict)
+
+    def __init__(self):
+        super().__init__()
+        print("✅ SubmissionDataModel: __init__() 실행됨")
+
+    def get_dictionary(self, dict):
+        self.dictionary = dict
+        
     def check_DCC(self):
         try:
             import maya.cmds as cmds
@@ -83,10 +93,11 @@ class SubmissionDataModel():
         
         """
         studentID = self.get_studentID()
-        today = datetime.date()
+        today = self.dictionary.get("date_time")
         output_dir = f"render_output\\{studentID}\\{today}\\"
 
-        pass
+        return output_dir
+
     def get_pc_group(self):
         """
         pc group 띄우는 함수 이거는이제 DB에서 가져와야될 것들이고 그건
@@ -95,7 +106,7 @@ class SubmissionDataModel():
         
         pass
 
-    def get_studentID(self, student_login_id):
+    def get_studentID(self):
         """
         이거는이제 DB에서 정보 가져오는 함수의 정보를가지고
         ui에 띄우는r
@@ -103,8 +114,9 @@ class SubmissionDataModel():
         근데 결국에 디비에서 예약시간대는 가져올 필요가 있으니까
 
         """
-        # student = reservation_collection.find_one({"student_id": student_login_id})
-        studentID = "dsa" #옌 로그인 정보에서 받아와도됨, 어짜피 테스트할거잖아.
+        
+        studentID = self.dictionary.get('student_id')
+        #옌 로그인 정보에서 받아와도됨, 어짜피 테스트할거잖아.
         return studentID
 
     def get_file_name(self):
@@ -113,5 +125,11 @@ class SubmissionDataModel():
         얘가 정보받아와서 ui에 띄우는거고
         get_current_path랑 합쳐도될거같고,,아님 그 path에서 스플릿해서[-1]  
         """
+        current_path = self.get_current_path()
+        file_name = current_path.split("\\")[-1]
 
-        pass
+        return file_name
+
+    def get_signed_time(self):
+        time = self.dictionary.get("date_time")
+        return time

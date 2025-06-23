@@ -1,74 +1,58 @@
-
-
-import PySide6
-from PySide6.QtWidgets import QWidget,QApplication,QLabel
-from PySide6.QtCore import QObject, Signal
-from PySide6.QtCore import Slot
+from datetime import datetime
+import sys
+from PySide6.QtWidgets import QWidget, QApplication
+from PySide6.QtCore import Signal
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
-from PySide6.QtGui import QPixmap
-from datetime import datetime
-import os
-import sys
 
- 
-"""
-student_id
-password
-signinS
-"""
 
 class LoginView(QWidget):
     login_dictionary = Signal(dict)
 
     def __init__(self):
         super().__init__()
+        print("✅ LoginView: __init__() 호출됨")
         self.setup_ui()
 
     def setup_ui(self):
-        ui_file_path="ui\\login\\login.ui"
-        ui_file=QFile(ui_file_path)
-        loader=QUiLoader()
-        self.ui=loader.load(ui_file)#ui 불러온거다.
-        self.ui.show()#ui띄우기.
+        print("✅ LoginView: setup_ui() 시작")
+        ui_file_path = "ui\\login\\login.ui"
+        ui_file = QFile(ui_file_path)
+        loader = QUiLoader()
+
+        self.ui = loader.load(ui_file)
+        self.ui.show()
         ui_file.close()
+        print("✅ LoginView: UI 로딩 완료")
+
         self.ui.signin.clicked.connect(self.signin_button)
+        print("✅ LoginView: 로그인 버튼 연결 완료")
 
     def get_student_id(self):
         student_id = self.ui.student_id.text()
+        print(f"📌 student_id 입력값: {student_id}")
         return student_id
-    
+
     def get_password(self):
         password = self.ui.password.text()
+        print(f"📌 password 입력값: {password}")
         return password
-    
+
     def signin_button(self):
+        print("🟡 signin_button() 클릭됨")
         student_id = self.get_student_id()
         password = self.get_password()
         date_time = datetime.now()
         formatted = date_time.isoformat()
-        login_info_dict = {"student_id":student_id,
-                                "password":password,
-                                "date_time": formatted}
+
+        login_info_dict = {
+            "student_id": student_id,
+            "password": password,
+            "date_time": formatted
+        }
+
         self.login_dictionary.emit(login_info_dict)
+        print(f"📤 emit login_dictionary: {login_info_dict}")
+
         self.ui.close()
-        
-
-"""App=QApplication()
-win=LoginView()
-
-receiver = Receiver(LoginView)
-win.login_dictionary.connect(receiver.return_info)
-
-win.show()
-sys.exit(App.exec())
-"""
-
-if __name__ == "__main__":
-    from login.login_controller import Receiver  # ✅ 여기서 불러오면 OK
-    app = QApplication(sys.argv)
-    window = LoginView()
-    receiver = Receiver(window)
-    window.login_dictionary.connect(receiver.return_info)
-    window.show()
-    sys.exit(app.exec())
+        print("✅ 로그인 시도 후 UI 닫기")
