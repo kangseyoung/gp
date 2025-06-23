@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: gp_clean
+Version: 0.1.0
+Summary: Cool login and backend system made by Seyoung
+Author: Seyoung
+Author-email: Seyoung <you@example.com>
+Requires-Python: >=3.8

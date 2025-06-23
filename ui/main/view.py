@@ -5,15 +5,11 @@
 """
 
 import sys
-sys.path.append("C:\\Users\\User\\Downloads\\_phoenix_\\lib\\asdasd\\")
-sys.path.append("C:\\Users\\User\\OneDrive\\Desktop\\gp_clean\\")
 import PySide6
 from PySide6.QtWidgets import QWidget,QApplication,QLabel
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile
 from PySide6.QtGui import QPixmap
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from main.model import SubmissionDataModel
 
 

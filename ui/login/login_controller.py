@@ -1,12 +1,8 @@
 from PySide6.QtCore import QObject, Signal
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QMessageBox
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from backend.authDB.db import reservation_collection,auth_collection
 import hashlib
-sys.path.append("C:\\Users\\User\\OneDrive\\Desktop\\gp_clean\\")
 from ui.main.view import Submitter
 from login_view import LoginView
 """

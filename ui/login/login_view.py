@@ -1,8 +1,5 @@
 
 
-import sys
-sys.path.append("C:\\Users\\User\\Downloads\\_phoenix_\\lib\\asdasd\\")
-sys.path.append("C:\\Users\\User\\OneDrive\\Desktop\\gp_clean\\")
 import PySide6
 from PySide6.QtWidgets import QWidget,QApplication,QLabel
 from PySide6.QtCore import QObject, Signal
@@ -12,9 +9,8 @@ from PySide6.QtCore import QFile
 from PySide6.QtGui import QPixmap
 from datetime import datetime
 import os
+import sys
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from login.login_controller import Receiver
  
 """
 student_id
@@ -69,9 +65,10 @@ sys.exit(App.exec())
 """
 
 if __name__ == "__main__":
+    from login.login_controller import Receiver  # ✅ 여기서 불러오면 OK
     app = QApplication(sys.argv)
     window = LoginView()
-    receiver = Receiver(LoginView)
+    receiver = Receiver(window)
     window.login_dictionary.connect(receiver.return_info)
     window.show()
     sys.exit(app.exec())

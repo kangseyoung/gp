@@ -28,9 +28,6 @@ send_to_deadline
 
 """
 from datetime import datetime
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from backend.authDB.db import reservation_collection
 
 
