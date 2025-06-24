@@ -68,6 +68,16 @@ class Submitter(QWidget):
         text = self.model.get_file_name()
         self.ui.filename.setText(text)
 
+    def set_reservation_time(self):
+        print("📌 set_reservation_time() 호출됨")
+        texts = self.model.get_reservation_list_for_student_id()
+        self.ui.reservation_list.addItems(texts)
+
+    def set_signed_time(self):
+        text = self.model.get_signed_time()
+        self.ui.signed_time.setText(text)
+
+#####################################################################################
     def click_send_to_deadline(self):
         print("📌 click_send_to_deadline() 연결 시작")
         self.ui.send_to_deadline.clicked.connect(self.test)
@@ -87,6 +97,8 @@ class Submitter(QWidget):
         self.set_studentID()
         self.set_file_name()
         self.click_send_to_deadline()
+        self.set_reservation_time()
+        self.set_signed_time()
         print("✅ veiw_info() 완료")
 
 if __name__ == "__main__":

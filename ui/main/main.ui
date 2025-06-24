@@ -150,6 +150,57 @@ background-color: rgb(218, 218, 218);</string>
       </item>
      </layout>
     </widget>
+    <widget class="QFrame" name="frame_4">
+     <property name="geometry">
+      <rect>
+       <x>-1</x>
+       <y>89</y>
+       <width>261</width>
+       <height>321</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>-1</x>
+        <y>-1</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="reservation">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(218, 218, 218);</string>
+         </property>
+         <property name="text">
+          <string>reservation</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QListWidget" name="reservation_list">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>31</y>
+        <width>251</width>
+        <height>291</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QFrame" name="frame_7">
     <property name="geometry">

@@ -42,13 +42,13 @@ class LoginView(QWidget):
         print("🟡 signin_button() 클릭됨")
         student_id = self.get_student_id()
         password = self.get_password()
-        date_time = datetime.now()
-        formatted = date_time.isoformat()
+        today = datetime.now()
+        date_str = today.strftime("%Y_%m_%d")
 
         login_info_dict = {
             "student_id": student_id,
             "password": password,
-            "date_time": formatted
+            "date_time": date_str
         }
 
         self.login_dictionary.emit(login_info_dict)

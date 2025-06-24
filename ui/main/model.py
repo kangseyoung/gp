@@ -27,7 +27,6 @@ studentID
 send_to_deadline
 
 """
-from datetime import datetime
 from backend.authDB.db import reservation_collection
 from PySide6.QtCore import QObject, Slot
 
@@ -133,3 +132,18 @@ class SubmissionDataModel(QObject):
     def get_signed_time(self):
         time = self.dictionary.get("date_time")
         return time
+    
+    def get_reservation_list_for_student_id(self):
+        
+        
+        reservation_dict = reservation_collection.find_one({"student_id":self.dictionary["student_id"]})
+        reservation_time = reservation_dict.get("days") #list
+        return reservation_time
+"""
+{'_id': ObjectId('685557ead58799f603a68151'), 
+'student_id': 'C123000',
+ 'days': ['토_19:00-22:00', '일_19:00-22:00', '토_19:00-22:00', '일_19:00-22:00']}
+
+
+"""
+        
