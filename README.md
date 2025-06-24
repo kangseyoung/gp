@@ -16,7 +16,7 @@ pip install "gpclean@git+https://github.com/너의계정/gpclean.git"
 Maya가 실행될 때 자동으로 메뉴를 등록하려면, `userSetup.py` 파일에 아래 코드를 추가합니다:
 
 ```python
-# 경로: ~/Documents/maya/2024/scripts/userSetup.py
+# 경로: ~/Documents/maya/2023/scripts/userSetup.py
 
 import gpclean.ui.menu
 gpclean.ui.menu.create_menu()
