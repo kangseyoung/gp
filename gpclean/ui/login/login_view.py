@@ -46,6 +46,8 @@ class LoginView(QWidget):
 
         self.ui.show()
         print("✅ UI 로딩 및 show() 완료")
+        self.ui.signin.clicked.connect(self.signin_button)
+        
     def get_student_id(self):
         student_id = self.ui.student_id.text()
         print(f"📌 student_id 입력값: {student_id}")
