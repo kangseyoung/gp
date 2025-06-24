@@ -1,6 +1,15 @@
-from PySide6.QtCore import QObject, Slot
-from PySide6.QtWidgets import QMessageBox
-from backend.authDB.db import auth_collection
+try:
+    from PySide6.QtCore import QObject, Slot
+    from PySide6.QtWidgets import QMessageBox
+    USING_QT = "PySide6"
+except ImportError:
+    from PySide2.QtCore import QObject, Slot
+    from PySide2.QtWidgets import QMessageBox
+    USING_QT = "PySide2"
+
+print(f"✅ Loaded {USING_QT}")
+
+from gpclean.backend.authDB.db import auth_collection
 import hashlib
 
 
@@ -51,8 +60,8 @@ class Receiver(QObject):
     def open_main_win(self):
         print("🚪 open_main_win() 호출됨")
         try:
-            from ui.main.view import Submitter
-            from ui.main.model import SubmissionDataModel
+            from gpclean.ui.main.view import Submitter
+            from gpclean.ui.main.model import SubmissionDataModel
 
             print("📦 Submitter import 성공")
 

@@ -27,9 +27,17 @@ studentID
 send_to_deadline
 
 """
-from backend.authDB.db import reservation_collection
-from PySide6.QtCore import QObject, Slot
+from gpclean.backend.authDB.db import reservation_collection
+try:
+    from PySide6.QtCore import QObject, Slot
+    USING_QT_CORE = "PySide6"
+except ImportError:
+    from PySide2.QtCore import QObject, Slot
+    USING_QT_CORE = "PySide2"
 
+print(f"✅ Loaded {USING_QT_CORE} for QObject and Slot")
+
+print("베어커피")
 class SubmissionDataModel(QObject):
 
     @Slot(dict)

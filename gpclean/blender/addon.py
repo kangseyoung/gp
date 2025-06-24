@@ -10,7 +10,7 @@ import bpy
 import threading
 
 def launch_tool():
-    from main import launch_login_ui
+    from gpclean.main import launch_login_ui
     launch_login_ui()
 
 class GP_OT_LaunchGPUI(bpy.types.Operator):

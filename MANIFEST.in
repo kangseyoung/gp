@@ -1,0 +1,1 @@
+recursive-include gpclean *.ui *.png *.jpg

@@ -1,8 +1,18 @@
 import sys
-from PySide6.QtWidgets import QWidget, QApplication
-from PySide6.QtUiTools import QUiLoader
-from PySide6.QtCore import QFile
-from PySide6.QtGui import QPixmap
+import os
+try:
+    from PySide6.QtWidgets import QWidget, QApplication
+    from PySide6.QtUiTools import QUiLoader
+    from PySide6.QtCore import QFile
+    from PySide6.QtGui import QPixmap
+    USING_QT = "PySide6"
+except ImportError:
+    from PySide2.QtWidgets import QWidget, QApplication
+    from PySide2.QtUiTools import QUiLoader
+    from PySide2.QtCore import QFile
+    from PySide2.QtGui import QPixmap
+    USING_QT = "PySide2"
+
 
 class Submitter(QWidget):
     def __init__(self, model):
@@ -14,17 +24,33 @@ class Submitter(QWidget):
         except Exception as e:
             print(f"❌ Submitter 초기화 실패: {e}")
 
+
     def setup_ui(self):
         print("📌 Submitter: setup_ui() 진입")
-        ui_file_path = "ui\\main\\main.ui"
+
+        # 절대경로로 변환 (패키지 구조에서도 안전하게 작동)
+        ui_file_path = os.path.join(os.path.dirname(__file__), "main.ui")
+        print(f"📁 UI 파일 경로: {ui_file_path}")
+
+        if not os.path.exists(ui_file_path):
+            print("❌ UI 파일이 존재하지 않습니다.")
+            return
+
         ui_file = QFile(ui_file_path)
+        if not ui_file.open(QFile.ReadOnly):
+            print("❌ UI 파일을 열 수 없습니다.")
+            return
+
         loader = QUiLoader()
-
         self.ui = loader.load(ui_file)
-        print("✅ UI 로딩 완료")
-
-        self.ui.show()
         ui_file.close()
+
+        if self.ui is None:
+            print("❌ UI 로딩 실패")
+            return
+
+        print("✅ UI 로딩 완료")
+        self.ui.show()
         print("✅ UI 화면 show() 호출됨")
 
         self.veiw_info()
@@ -107,4 +133,7 @@ if __name__ == "__main__":
     window = Submitter()
     window.show()
     print("✅ Submitter window.show() 완료")
-    sys.exit(app.exec())
+    try:
+        sys.exit(app.exec())
+    except AttributeError:
+        sys.exit(app.exec_())

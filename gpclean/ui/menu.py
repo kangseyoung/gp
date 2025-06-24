@@ -1,6 +1,6 @@
 # ui/menu.py
 import maya.cmds as cmds
-from main import launch_login_ui
+from gpclean.main import launch_login_ui
 
 def create_menu():
     if cmds.menu("GPCleanMenu", exists=True):
