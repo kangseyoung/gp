@@ -19,7 +19,7 @@ def add_students_to_mongo():
 
     for student_id, plain_password in auth_dict.items():
         if check_registered_user(student_id):
-            print(f"⚠️ 이미 존재하는 학번입니다: {student_id}")
+            print(f" 이미 존재하는 학번입니다: {student_id}")
             continue  # 다음 사용자로 넘어감
 
         hashed_pw = hash_password(plain_password)
@@ -30,7 +30,7 @@ def add_students_to_mongo():
             "password_hash": hashed_pw
         })
 
-        print(f"✅ {student_id} 등록 완료!")
+        print(f"ReplaceA {student_id} 등록 완료!")
 
 # 등록할 학번과 비밀번호 딕셔너리 생성
 def make_dictionary():

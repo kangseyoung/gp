@@ -43,7 +43,7 @@ import gpclean.blender.addon as addon
 addon.register()
 ```
 
-> ✅ 그러면 상단 메뉴에 `Launch GP Clean UI` 버튼이 생기고, 클릭 시 PySide6 UI가 실행됩니다.
+> ReplaceA 그러면 상단 메뉴에 `Launch GP Clean UI` 버튼이 생기고, 클릭 시 PySide6 UI가 실행됩니다.
 
 #### 3. Blender 실행 시 자동으로 등록되게 하려면?
 

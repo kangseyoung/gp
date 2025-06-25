@@ -61,11 +61,11 @@ for record in records:
         filter = {"student_id": student_id}
         if reservation_collection.find_one(filter):
             update = {"$push": {"days": {"$each": day_list}}}
-            print("✅ 기존 학생 예약 추가")
+            print("ReplaceA 기존 학생 예약 추가")
         else:
             doc = {"student_id": student_id, "days": day_list}
             update = {"$set": doc}
-            print("✅ 새 학생 예약 등록")
+            print("ReplaceA 새 학생 예약 등록")
         reservation_collection.update_one(filter, update, upsert=True)
 
 
@@ -84,7 +84,7 @@ for record in records:
             print("else문")
         collection.update_one(filter, update, upsert=True)
 """
-print("✅ MongoDB 업데이트 완료")
+print("ReplaceA MongoDB 업데이트 완료")
 """
 [
   {

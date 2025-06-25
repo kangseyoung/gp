@@ -26,7 +26,7 @@ def add_student_to_excel():
         hashed_pw = hash_password(plain_password)
         ws.append([student_id, hashed_pw])
         wb.save(excel_path)
-        print(f"✅ {student_id} 등록 완료!")
+        print(f"ReplaceA {student_id} 등록 완료!")
 
 def make_dictionary():
     auth_dict = {"C123000":"1234",
@@ -52,6 +52,6 @@ def create_excel():
 def check_registered_user(student_id,ws):
     for row in ws.iter_rows(min_row=2, values_only=True):  # 2번째 줄부터 모든 줄 검사
         if str(row[0]) == str(student_id):  # 학번이 같으면 중복 처리
-            print(f"⚠️ 이미 존재하는 학번입니다: {student_id}")
+            print(f" 이미 존재하는 학번입니다: {student_id}")
             return  # 함수 종료
 add_student_to_excel()

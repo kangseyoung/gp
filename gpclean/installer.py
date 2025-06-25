@@ -11,9 +11,9 @@ def create_user_setup():
         with open(user_setup_path, "r") as f:
             content = f.read()
         if line in content:
-            print("✅ userSetup.py already contains menu setup.")
+            print("ReplaceA userSetup.py already contains menu setup.")
             return
 
     with open(user_setup_path, "a") as f:
         f.write(f"\n{line}\n")
-        print(f"✅ userSetup.py updated with: {line}")
+        print(f"ReplaceA userSetup.py updated with: {line}")
