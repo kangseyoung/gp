@@ -23,16 +23,17 @@ def create_menu():
         from gpclean.main import launch_login_ui
 
         # 메뉴 바 layout 이름 가져오기
-        main_menu = mel.eval('$tmp=$gMainWindowMenuBar')
+        
+                  
+        if cmds.menu('PRFS', exists=True):
+            cmds.deleteUI('PRFS', menu=True)
+            logger.info("기존 PRFS 삭제함")
 
-        if cmds.menu("GPCleanMenu", exists=True):
-            cmds.deleteUI("GPCleanMenu", menu=True)
-            logger.info("기존 GPCleanMenu 삭제함")
+        gMainWindow = mel.eval('$window=$gMainWindow')
+        custom_menu = cmds.menu(parent=gMainWindow, tearOff = True, label = 'PRFS') 
+        cmds.menuItem(label="submit to deadline", parent= custom_menu, command=lambda *_: launch_login_ui())
 
-        cmds.menu("GPCleanMenu", label="PRFS", parent=main_menu, tearOff=True)
-        cmds.menuItem(label="submit to deadline", parent="GPCleanMenu", command=lambda *_: launch_login_ui())
-
-        logger.info("GPCleanMenu 생성 완료")
+        logger.info("'PRFS' 생성 완료")
 
     except Exception as e:
         logger.exception(e)
