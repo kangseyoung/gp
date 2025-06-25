@@ -14,26 +14,28 @@ except ImportError:
 print(f"ReplaceA Loaded {USING_QT}")
 
 
+from gpclean.logging_setup import logger
+
 class LoginView(QWidget):
     login_dictionary = Signal(dict)
 
     def __init__(self):
         super().__init__()
-        print("ReplaceA LoginView: __init__() 호출됨")
+        logger.info("ReplaceA LoginView: __init__() 호출됨")
         self.setup_ui()
 
     def setup_ui(self):
-        print("ReplaceA LoginView: setup_ui() 시작")
+        logger.info("ReplaceA LoginView: setup_ui() 시작")
         ui_file_path = os.path.join(os.path.dirname(__file__), "login.ui")  # 상대 경로 문제 해결
-        print(f" UI 파일 경로: {ui_file_path}")
+        logger.info(f" UI 파일 경로: {ui_file_path}")
 
         ui_file = QFile(ui_file_path)
         if not ui_file.exists():
-            print(" UI 파일이 존재하지 않습니다!")
+            logger.info(" UI 파일이 존재하지 않습니다!")
             return
 
         if not ui_file.open(QFile.ReadOnly):
-            print(" UI 파일을 열 수 없습니다!")
+            logger.info(" UI 파일을 열 수 없습니다!")
             return
 
         loader = QUiLoader()
@@ -41,25 +43,25 @@ class LoginView(QWidget):
         ui_file.close()
 
         if self.ui is None:
-            print(" UI 로딩 실패")
+            logger.info(" UI 로딩 실패")
             return
 
         self.ui.show()
-        print("ReplaceA UI 로딩 및 show() 완료")
+        logger.info("ReplaceA UI 로딩 및 show() 완료")
         self.ui.signin.clicked.connect(self.signin_button)
         
     def get_student_id(self):
         student_id = self.ui.student_id.text()
-        print(f" student_id 입력값: {student_id}")
+        logger.info(f" student_id 입력값: {student_id}")
         return student_id
 
     def get_password(self):
         password = self.ui.password.text()
-        print(f" password 입력값: {password}")
+        logger.info(f" password 입력값: {password}")
         return password
 
     def signin_button(self):
-        print(" signin_button() 클릭됨")
+        logger.info(" signin_button() 클릭됨")
         student_id = self.get_student_id()
         password = self.get_password()
         today = datetime.now()
@@ -72,7 +74,7 @@ class LoginView(QWidget):
         }
 
         self.login_dictionary.emit(login_info_dict)
-        print(f" emit login_dictionary: {login_info_dict}")
+        logger.info(f" emit login_dictionary: {login_info_dict}")
 
         self.ui.close()
-        print("ReplaceA 로그인 시도 후 UI 닫기")
+        logger.info("ReplaceA 로그인 시도 후 UI 닫기")

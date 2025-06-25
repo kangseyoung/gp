@@ -7,9 +7,9 @@ import maya.utils
 # 로그 설정
 log_dir = "D:/new_maya"
 os.makedirs(log_dir, exist_ok=True)
-log_path = os.path.join(log_dir, "gpclean.log")
+log_path = os.path.join(log_dir, "menu.log")
 
-logger = logging.getLogger("gpclean")
+logger = logging.getLogger("menu")
 logger.setLevel(logging.DEBUG)
 
 if not logger.handlers:
