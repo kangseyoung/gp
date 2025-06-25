@@ -2,6 +2,7 @@ import logging
 import os
 import maya.cmds as cmds
 import maya.mel as mel
+import maya.utils
 
 # 로그 설정
 log_dir = "D:/new_maya"
@@ -23,17 +24,16 @@ def create_menu():
     try:
         from gpclean.main import launch_login_ui
 
-        # 올바른 메뉴바 layout 불러오기
         menu_bar = mel.eval('$tmp = $gMainWindowMenuBar')
 
         if cmds.menu('PRFS', exists=True):
             cmds.deleteUI('PRFS', menu=True)
-            logger.info("기존 PRFS 삭제함")
+            logger.info("기존 PRFS 메뉴 삭제")
 
         custom_menu = cmds.menu('PRFS', parent=menu_bar, tearOff=True, label='PRFS')
         cmds.menuItem(label="submit to deadline", parent=custom_menu, command=lambda *_: launch_login_ui())
 
-        logger.info("'PRFS' 생성 완료")
+        logger.info("PRFS 메뉴 생성 완료")
 
     except Exception as e:
         logger.exception(e)
