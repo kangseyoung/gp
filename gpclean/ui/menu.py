@@ -1,5 +1,7 @@
 import logging
 import os
+import maya.cmds as cmds
+import maya.mel as mel
 
 # 로그 설정
 log_dir = "D:/new_maya"
@@ -18,20 +20,18 @@ if not logger.handlers:
 def create_menu():
     import maya.cmds as cmds
     import maya.mel as mel
-
     try:
         from gpclean.main import launch_login_ui
 
-        # 메뉴 바 layout 이름 가져오기
-        
-                  
+        # 올바른 메뉴바 layout 불러오기
+        menu_bar = mel.eval('$tmp = $gMainWindowMenuBar')
+
         if cmds.menu('PRFS', exists=True):
             cmds.deleteUI('PRFS', menu=True)
             logger.info("기존 PRFS 삭제함")
 
-        gMainWindow = mel.eval('$window=$gMainWindow')
-        custom_menu = cmds.menu(parent=gMainWindow, tearOff = True, label = 'PRFS') 
-        cmds.menuItem(label="submit to deadline", parent= custom_menu, command=lambda *_: launch_login_ui())
+        custom_menu = cmds.menu('PRFS', parent=menu_bar, tearOff=True, label='PRFS')
+        cmds.menuItem(label="submit to deadline", parent=custom_menu, command=lambda *_: launch_login_ui())
 
         logger.info("'PRFS' 생성 완료")
 
