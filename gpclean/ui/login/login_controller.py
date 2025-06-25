@@ -6,7 +6,7 @@ except ImportError:
     from PySide2.QtCore import QObject, Slot
     from PySide2.QtWidgets import QMessageBox
     USING_QT = "PySide2"
-from logging_setup import logger
+from gpclean.logging_setup import logger
 
 logger.info(f"ReplaceA Loaded {USING_QT}")
 
