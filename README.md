@@ -28,11 +28,10 @@ gpclean.ui.menu.create_menu()
 
 ### 🧿 Blender에서 메뉴바에 등록하기
 
-#### 1. 패키지 설치
+#### 1.깃 클론
 
-```bash
-pip install "gpclean@git+https://github.com/너의계정/gpclean.git"
-```
+git clone -b test https://github.com/kangseyoung/gp.git
+
 
 #### 2. 애드온 수동 등록 (1회만)
 

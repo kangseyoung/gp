@@ -14,9 +14,10 @@ subprocess.run([
     "--target", str(site_packages_dir)
 ])
 
+source_dir = "D:\gitclonetest\gp\gpclean"
 # 2. 툴 소스코드 복사
 import shutil
-shutil.copytree("my_tool", maya_scripts_dir / "gpclean", dirs_exist_ok=True)
+shutil.copytree(source_dir, maya_scripts_dir / "gpclean", dirs_exist_ok=True)
 
 # 3. userSetup.py 덮어쓰기
 shutil.copy("userSetup.py", maya_scripts_dir / "userSetup.py")
