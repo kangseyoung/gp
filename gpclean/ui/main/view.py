@@ -7,7 +7,7 @@ try:
     from PySide6.QtGui import QPixmap
     USING_QT = "PySide6"
 except ImportError:
-    from PySide2.QtWidgets import QWidget, QApplication
+    from PySide2.QtWidgets import QWidget, QApplication,QMainWindow
     from PySide2.QtUiTools import QUiLoader
     from PySide2.QtCore import QFile
     from PySide2.QtGui import QPixmap
@@ -15,6 +15,7 @@ except ImportError:
 import logging 
 from gpclean.logging_setup import wtflogset
 wtflogset()
+
 class Submitter(QWidget):
     def __init__(self, model):
         super().__init__()
@@ -44,17 +45,17 @@ class Submitter(QWidget):
 
         loader = QUiLoader()
         self.ui = loader.load(ui_file)
-        ui_file.close()
+        #ui_file.close()
 
         if self.ui is None:
             logging.info(" UI 로딩 실패")
             return
 
         logging.info("ReplaceA UI 로딩 완료")
-        self.ui.show()
-        logging.info("ReplaceA UI 화면 show() 호출됨")
-
         self.veiw_info()
+        logging.info("ReplaceA UI 화면 show() 호출됨")
+        self.ui.show()
+
 
     ###################################################################
     def set_current_path(self):
@@ -134,7 +135,4 @@ if __name__ == "__main__":
     window = Submitter()
     window.show()
     logging.info("ReplaceA Submitter window.show() 완료")
-    try:
-        sys.exit(app.exec())
-    except AttributeError:
-        sys.exit(app.exec_())
+    sys.exit(app.exec_())

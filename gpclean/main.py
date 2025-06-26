@@ -9,7 +9,7 @@ try:
 except ImportError:
     from PySide2.QtWidgets import QApplication
     USING_QT = "PySide2"
-    logging.info("2됨")
+    logging.info("2됨22222222222222")
 
 logging.info(f" Loaded {USING_QT}")
 
@@ -28,7 +28,6 @@ def launch_login_ui():
     app = QApplication.instance()
     if not app:
         logging.info(" QApplication 인스턴스가 없음 → 생성 필요")
-        app = QApplication(sys.argv)
 
 
     logging.info(" LoginView 인스턴스 생성3333333333333333")

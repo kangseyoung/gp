@@ -17,7 +17,8 @@ print(f"ReplaceA Loaded {USING_QT}")
 import logging 
 from gpclean.logging_setup import wtflogset
 wtflogset()
-from gpclean.ui.main import view
+from gpclean.ui.login.login_controller import Receiver
+
 
 class LoginView(QWidget):
     login_dictionary = Signal(dict)
@@ -76,8 +77,8 @@ class LoginView(QWidget):
             "date_time": date_str
         }
 
+        a = Receiver(self)
+        self.login_dictionary.connect(a.return_info)
+        logging.info(f" connect login_dictionary: {login_info_dict}")
         self.login_dictionary.emit(login_info_dict)
         logging.info(f" emit login_dictionary: {login_info_dict}")
-
-        self.ui.close()
-        logging.info("ReplaceA 로그인 시도 후 UI 닫기")

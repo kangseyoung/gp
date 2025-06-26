@@ -73,9 +73,14 @@ class Receiver(QObject):
             self.model.get_dictionary(self.dictionary)
 
             # ReplaceA Submitter에 model을 전달
-            self.render_ui = Submitter(self.model)
+            #self.render_ui = Submitter(self.model)
+            self.render_ui = Submitter(self.model, parent=self.view)
+            import __main__
+            __main__.main_ui = self.render_ui
             self.render_ui.show()
 
             logging.info("메인 UI 띄움")
+            #self.view.ui.close()
+            
         except Exception as e:
             logging.info(f" 메인 UI 열기 실패: {e}")
