@@ -17,8 +17,9 @@ from gpclean.logging_setup import wtflogset
 wtflogset()
 
 class Submitter(QWidget):
-    def __init__(self, model):
-        super().__init__()
+    def __init__(self, model, parent=None):
+        super().__init__(parent)
+        logging.info(f"Submitter에 전달된 model 타입: {type(model)}")
         try:
             logging.info("ReplaceA Submitter 생성자 진입")
             self.model = model  # ReplaceA 전달된 모델 저장
@@ -38,23 +39,23 @@ class Submitter(QWidget):
             logging.info(" UI 파일이 존재하지 않습니다.")
             return
 
+        loader = QUiLoader()
         ui_file = QFile(ui_file_path)
         if not ui_file.open(QFile.ReadOnly):
             logging.info(" UI 파일을 열 수 없습니다.")
             return
 
-        loader = QUiLoader()
         self.ui = loader.load(ui_file)
-        #ui_file.close()
+        ui_file.close()
 
         if self.ui is None:
             logging.info(" UI 로딩 실패")
             return
 
-        logging.info("ReplaceA UI 로딩 완료")
-        self.veiw_info()
-        logging.info("ReplaceA UI 화면 show() 호출됨")
         self.ui.show()
+        logging.info("ReplaceA UI 화면 show() 호출됨")
+        self.veiw_info()
+        logging.info("ReplaceA UI 로딩 완료")
 
 
     ###################################################################

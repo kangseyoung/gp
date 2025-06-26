@@ -59,8 +59,21 @@ class Receiver(QObject):
         else:
             logging.info(" 학번 없음")
             QMessageBox.warning(self.view.ui, "로그인 실패", "학번이 틀렸습니다.")
-
     def open_main_win(self):
+        from gpclean.ui.main.model import SubmissionDataModel
+        from gpclean.ui.main.view import Submitter
+        # 모델 생성 및 값 설정
+        model = SubmissionDataModel()
+        model.get_dictionary(self.dictionary)
+        # 글로벌에 저장하여 GC 방지
+        import __main__
+        __main__.main_ui = Submitter(model)
+        __main__.main_ui.show()
+        # 로그인 창 닫기
+        self.view.ui.close()
+
+        
+"""    def open_main_win(self):
         logging.info(" open_main_win() 호출됨")
         try:
             from gpclean.ui.main.view import Submitter
@@ -73,14 +86,9 @@ class Receiver(QObject):
             self.model.get_dictionary(self.dictionary)
 
             # ReplaceA Submitter에 model을 전달
-            #self.render_ui = Submitter(self.model)
-            self.render_ui = Submitter(self.model, parent=self.view)
-            import __main__
-            __main__.main_ui = self.render_ui
+            self.render_ui = Submitter(self.model)
             self.render_ui.show()
 
             logging.info("메인 UI 띄움")
-            #self.view.ui.close()
-            
         except Exception as e:
-            logging.info(f" 메인 UI 열기 실패: {e}")
+            logging.info(f" 메인 UI 열기 실패: {e}")"""

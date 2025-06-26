@@ -18,7 +18,7 @@ class SubmissionDataModel(QObject):
     def __init__(self):
         super().__init__()
         logging.info("ReplaceA SubmissionDataModel: __init__() 실행됨")
-
+        self.dictionary = {}
     def get_dictionary(self, dict):
         self.dictionary = dict
         logging.info(f" dictionary 저장됨: {dict}")

@@ -76,9 +76,15 @@ class LoginView(QWidget):
             "password": password,
             "date_time": date_str
         }
-
-        a = Receiver(self)
+        import __main__
+        __main__.receiver = Receiver(self)
+        self.login_dictionary.connect(__main__.receiver.return_info)
+        self.login_dictionary.emit(login_info_dict)
+        """a = Receiver(self)
         self.login_dictionary.connect(a.return_info)
         logging.info(f" connect login_dictionary: {login_info_dict}")
         self.login_dictionary.emit(login_info_dict)
         logging.info(f" emit login_dictionary: {login_info_dict}")
+        self.open_main_win()"""
+
+ 
